@@ -68,7 +68,7 @@ public class HuffmanGzip {
     }
     public static void reReadHuffman(String tempPath,String toPath,String anotherPath) throws IOException{
         BufferedReader input  = new BufferedReader(new FileReader(tempPath));
-        BufferedWriter output = new BufferedWriter(new FileWriter(toPath));
+        FileOutputStream output = new FileOutputStream(toPath);
         BufferedWriter output1 = new BufferedWriter(new FileWriter(anotherPath));
         char[] buf = new char[8];
         int hasread;
