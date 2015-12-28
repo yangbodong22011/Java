@@ -91,13 +91,11 @@ public class HuffmanUnGzip {
     }
 
     public static void getTemp2(String toPath, String anotherPath, String temp2Path) throws IOException {
-        BufferedReader input = new BufferedReader(new FileReader(toPath));
+        FileInputStream input = new FileInputStream(toPath);
         BufferedReader input1 = new BufferedReader(new FileReader(anotherPath));
         BufferedWriter output = new BufferedWriter(new FileWriter(temp2Path));
-        char[] buf = new char[1];
-        int hasread;
-        while ((hasread = input.read(buf)) > 0) {
-            int a = (int) buf[0];
+        int a;
+        while ((a = input.read()) != -1) {
             String str = changeToBinary(a);
             output.write(str);
         }
