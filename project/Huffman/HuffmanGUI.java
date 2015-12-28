@@ -68,6 +68,19 @@ public class HuffmanGUI extends JFrame{
         }
 
     }
+    public static void Message(String path) throws IOException{
+        String toPath = path + ".gz";
+        FileInputStream input1 = new FileInputStream(new File(path));
+        FileInputStream input2 = new FileInputStream(new File(toPath));
+        double oringal = input1.available()/1000;
+        double last = input2.available()/1000;
+        int rate = (int)(last/oringal*100);
+        String str = "恭喜你,压缩成功" + "\n" +
+                     "压缩前大小: " + oringal + " KB" + "\n" +
+                     "压缩后大小: " + last + " KB" + "\n" +
+                     "压缩比例: " + rate + "%" + "\n";
+        JOptionPane.showMessageDialog(null,str,"系统提示",JOptionPane.INFORMATION_MESSAGE);
+    }
     class MyButListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             clickBut = (JButton)e.getSource();
@@ -76,7 +89,7 @@ public class HuffmanGUI extends JFrame{
                     path = fileChooser.getSelectedFile().getAbsolutePath();
                     HuffmanGzip huffmanGzip = new HuffmanGzip(path);
                     fileChooser.rescanCurrentDirectory();
-                    JOptionPane.showMessageDialog(null,"恭喜你,压缩成功!",null,JOptionPane.INFORMATION_MESSAGE);
+                    Message(path);
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
